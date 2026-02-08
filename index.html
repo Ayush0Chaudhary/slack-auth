@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        window.onload = function() {
+            // 1. Get the query parameters (e.g., ?code=123&state=abc)
+            const params = window.location.search;
+            
+            // 2. Construct your custom app URL
+            // This will look like: metal://oauth/slack/callback?code=123...
+            const targetUrl = "metal://oauth/slack/callback" + params;
+
+            // 3. Redirect the browser to open your app
+            window.location.href = targetUrl;
+            
+            // Optional: Close this window after a short delay if on desktop
+            setTimeout(function() {
+                document.body.innerHTML = "Redirected to Metal. You can close this tab.";
+            }, 1000);
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecting to Metal AI Assistant...</p>
+    <p>If nothing happens, <a href="#" id="manualLink">click here</a>.</p>
+    
+    <script>
+        // Set the manual link just in case auto-redirect fails
+        document.getElementById('manualLink').href = "metal://oauth/slack/callback" + window.location.search;
+    </script>
+</body>
+</html>
